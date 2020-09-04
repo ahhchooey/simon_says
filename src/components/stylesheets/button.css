@@ -2,43 +2,47 @@
 .button {
   height: 100px;
   width: 100px;
+  opacity: 0.75;
+
+  margin: 10px;
+  padding: 15px 25px;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
 
   box-sizing: border-box;
 }
 
-.button:hover {
-  border: 5px solid gray; 
+.hov:active {
+  background-color: #777;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.hov:hover {
+  opacity: 0.5;
 }
 
 .green {
   background-color: green;
 }
 
-.green-flash {
-  background-color: lightgreen;
-}
-
 .red {
   background-color: red;
-}
-
-.red-flash {
-  background-color: pink;
 }
 
 .yellow {
   background-color: yellow;
 }
 
-.yellow-flash {
-  background-color: lightyellow;
-}
-
 .blue {
   background-color: blue;
 }
 
-.blue-flash {
-  background-color: lightblue;
+.flash {
+  opacity: 1;
+  box-shadow: 0 9px #CCC;
 }
-

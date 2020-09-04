@@ -11,17 +11,22 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
   const [playerTurn, setPlayerTurn] = React.useState(false);
   const [playerIndex, setPlayerIndex] = React.useState(0);
 
-  const colors = ["green", "red", "yellow", "blue"]
+  const colorsTop = ["green", "red"], colorsBottom = ["yellow", "blue"];
+  const display = document.querySelector(".display");
 
   React.useEffect(() => {
     if (gameRunning && !playerTurn) {
       console.log(sequence)
       playSequence();
     }
-  },[sequence, gameRunning, playerTurn, playerIndex])
+    if (playerTurn) {
+      display.innerHTML = "copy simon";
+    }
+  },[sequence, gameRunning, playerTurn])
 
   const playSequence = () => {
     setPlayingSequence(true);
+      display.innerHTML = "simon is moving";
 
     let i = 0;
     let button;
@@ -34,9 +39,9 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
       let realIdx = Math.floor(i/2);
       if (i % 2 === 0) {
         button = document.querySelector(`.${sequence[realIdx]}`);
-        button.classList.add(`${sequence[realIdx]}-flash`);
+        button.classList.add(`flash`);
       } else {
-        button.classList.remove(`${sequence[realIdx]}-flash`);
+        button.classList.remove(`flash`);
       }
       i++;
     }, 650)
@@ -46,9 +51,12 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
     if (playerTurn) {
       if (sequence[playerIndex] === e.target.getAttribute("data-color")) {
         if (playerIndex === sequence.length - 1) {
-          setPlayerIndex(0);
-          nextLevel();
-          setPlayerTurn(false);
+          display.innerHTML = "correct!";
+          setTimeout(() => {
+            setPlayerIndex(0);
+            nextLevel();
+            setPlayerTurn(false);
+          }, 500)
         } else {
           setPlayerIndex(playerIndex + 1);
         }
@@ -63,9 +71,20 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
   return (
     <div className="buttonContainer">
       {
-        colors.map((color) => 
-          <div 
-            className={`button ${color}`}
+        colorsTop.map((color) => 
+          <button 
+            className={`button ${color}${(playerTurn) ? ` hov` : ``}`}
+            data-color={color}
+            key={color}
+            onClick={(e) => clickButton(e)}
+          />
+        )
+      }
+      <div></div>
+      {
+        colorsBottom.map((color) => 
+          <button 
+            className={`button ${color}${(playerTurn) ? ` hov` : ``}`}
             data-color={color}
             key={color}
             onClick={(e) => clickButton(e)}
