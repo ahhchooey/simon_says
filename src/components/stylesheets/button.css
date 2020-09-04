@@ -20,8 +20,8 @@
 }
 
 .hov:active {
-  background-color: #777;
-  box-shadow: 0 5px #666;
+  background-color: #999;
+  box-shadow: 0 5px #777;
   transform: translateY(4px);
 }
 
@@ -47,7 +47,8 @@
 }
 
 .flash {
+
   opacity: 1;
-  box-shadow: 0 9px #CCC;
+  box-shadow: 0 9px gold;
 }
 
