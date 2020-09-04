@@ -15,10 +15,6 @@
   box-sizing: border-box;
 }
 
-.button:focus {
-  outline: 0;
-}
-
 .hov:hover {
   cursor: pointer;
   opacity: 0.65;
@@ -49,5 +45,13 @@
 .flash {
   opacity: 1;
   box-shadow: 0 9px gold;
+}
+
+.button:focus {
+  outline: 0;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
 }
 
