@@ -2,15 +2,16 @@ import React from "react";
 import "./stylesheets/game.css";
 
 import ButtonContainer from "./buttonContainer.js";
+import Leaderboard from "./leaderboard.js";
 
 
 function Game() {
 
-  const [level, setLevel] = React.useState(1);
   const [score, setScore] = React.useState(0);
   const [sequence, setSequence] = React.useState([]);
   const [gameRunning, setGameRunning] = React.useState(false);
   const [gameOver, setGameOver] = React.useState(false);
+  const [toLeaderboard, setToLeaderboard] = React.useState();
 
   const colors = ["green", "red", "yellow", "blue"]
 
@@ -23,8 +24,8 @@ function Game() {
 
   const restart = () => {
     setGameOver(false);
-    setLevel(1);
     setScore(0);
+
     setGameRunning(true);
     createSequence();
   }
@@ -35,7 +36,6 @@ function Game() {
   }
 
   const nextLevel = () => {
-    setLevel(level + 1);
     createSequence();
     setScore(score + 1);
   }
@@ -44,6 +44,7 @@ function Game() {
     setGameOver(true);
     setGameRunning(false);
     setSequence([]);
+    setToLeaderboard(score);
   }
 
   return (
@@ -65,6 +66,8 @@ function Game() {
         nextLevel={nextLevel}
         endGame={endGame}
       />
+
+      <Leaderboard newScore={toLeaderboard}/>
     </div>
   )
 }

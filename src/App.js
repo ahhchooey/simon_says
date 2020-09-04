@@ -10,7 +10,6 @@ function App() {
       <h1>Simon Says</h1>
 
       <Game />
-      <Leaderboard />
     </div>
   );
 }
