@@ -15,6 +15,19 @@ function Game() {
 
   const colors = ["green", "red", "yellow", "blue"]
 
+  React.useEffect(() => {
+    if (!gameRunning) {
+      document.addEventListener("keydown", startOnSpace);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  
+  const startOnSpace = (e) => {
+      if (e.code === "Space") {
+        start();
+      }
+  }
+
   const createSequence = () => {
     const seq = sequence;
     const randIdx = Math.floor(Math.random() * 4);
@@ -33,6 +46,7 @@ function Game() {
   const start = () => {
     setGameRunning(true);
     createSequence();
+    document.removeEventListener("keydown", startOnSpace);
   }
 
   const nextLevel = () => {

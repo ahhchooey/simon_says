@@ -32,7 +32,6 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
         i++;
       }, 500)
     }
-
     if (gameRunning && !playerTurn) {
       setTimeout(() => {
         playSequence();
