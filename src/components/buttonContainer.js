@@ -34,7 +34,9 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
     }
 
     if (gameRunning && !playerTurn) {
-      playSequence();
+      setTimeout(() => {
+        playSequence();
+      }, 650)
     }
     if (playerTurn) {
       display.innerHTML = "copy simon";
@@ -47,10 +49,10 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
         if (playerIndex === sequence.length - 1) {
           const display = document.querySelector(".display");
           display.innerHTML = "correct!";
+          setPlayerTurn(false);
           setTimeout(() => {
             setPlayerIndex(0);
             nextLevel();
-            setPlayerTurn(false);
           }, 650)
         } else {
           setPlayerIndex(playerIndex + 1);
@@ -62,7 +64,7 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
           setPlayerTurn(false);
           const display = document.querySelector(".display");
           display.innerHTML = "incorrect! would you like to play again?";
-        }, 250)
+        }, 100)
       }
     }
   }
