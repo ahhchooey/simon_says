@@ -14,33 +14,36 @@ function Game() {
 
   const colors = ["green", "red", "yellow", "blue"]
 
-  const createSequence = (level) => {
-    const seq = [];
-    for (let i = 0; i < level; i++) {
-      const randIdx = Math.floor(Math.random() * 4);
-      seq.push(colors[randIdx]); 
-    }
+  const createSequence = () => {
+    const seq = sequence;
+    const randIdx = Math.floor(Math.random() * 4);
+    seq.push(colors[randIdx]); 
     setSequence(seq);
   }
 
   const restart = () => {
+    setGameOver(false);
     setLevel(1);
     setScore(0);
-    setSequence([]);
-  }
-  
-  const getIsRunning = () => {
-    return gameRunning;
-  }
-
-  const getSequence = () => {
-    return sequence;
+    setGameRunning(true);
+    createSequence();
   }
 
   const start = () => {
     setGameRunning(true);
+    createSequence();
+  }
 
-    createSequence(level);
+  const nextLevel = () => {
+    setLevel(level + 1);
+    createSequence();
+    setScore(score + 1);
+  }
+
+  const endGame = () => {
+    setGameOver(true);
+    setGameRunning(false);
+    setSequence([]);
   }
 
   return (
@@ -58,6 +61,8 @@ function Game() {
       <ButtonContainer 
         gameRunning={gameRunning}
         sequence={sequence}
+        nextLevel={nextLevel}
+        endGame={endGame}
       />
     </div>
   )

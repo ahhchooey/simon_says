@@ -2,11 +2,13 @@ import React from "react";
 import "./stylesheets/button.css";
 
 
-function Button() {
+function Button({color}) {
 
   return (
-    <div className="button">
-
+    <div 
+      className={`button ${color}`}
+    >
+      {color}
     </div>
   )
 }

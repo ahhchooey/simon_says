@@ -1,0 +1,44 @@
+
+.button {
+  height: 100px;
+  width: 100px;
+
+  box-sizing: border-box;
+}
+
+.button:hover {
+  border: 5px solid gray; 
+}
+
+.green {
+  background-color: green;
+}
+
+.green-flash {
+  background-color: lightgreen;
+}
+
+.red {
+  background-color: red;
+}
+
+.red-flash {
+  background-color: pink;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.yellow-flash {
+  background-color: lightyellow;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.blue-flash {
+  background-color: lightblue;
+}
+
