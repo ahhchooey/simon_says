@@ -13,7 +13,6 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
 
   React.useEffect(() => {
     if (gameRunning && !playerTurn) {
-      console.log(sequence)
       playSequence();
     }
     if (playerTurn) {
@@ -56,10 +55,12 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
           setPlayerIndex(playerIndex + 1);
         }
       } else {
-        setPlayerIndex(0);
-        setPlayerTurn(false);
         endGame();
-        display.innerHTML = "incorrect! would you like to play again?";
+        setTimeout(() => {
+          setPlayerIndex(0);
+          setPlayerTurn(false);
+          display.innerHTML = "incorrect! would you like to play again?";
+        }, 250)
       }
     }
   }

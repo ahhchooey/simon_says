@@ -1,0 +1,10 @@
+
+.leaderboard {
+  width: 125px;
+  margin: 0 auto;
+}
+
+.leaderboardSlot {
+  display: flex;
+  justify-content: space-between;
+}

@@ -53,10 +53,10 @@ function Game() {
         <div className="display">&nbsp;</div>
         {
           (gameOver) ?
-            <div className="restartButton" onClick={restart}>play again</div>
+            <button className="displayButton" onClick={restart}>play again</button>
             : (gameRunning) ? 
-              <div className="score">{score}</div>
-            : <div className="startButton" onClick={start}>start</div>
+              <div className="score">score: {score}</div>
+            : <button className="displayButton" onClick={start}>start</button>
         }
       </div>
       

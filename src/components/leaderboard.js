@@ -35,9 +35,18 @@ function Leaderboard({newScore}) {
   return (
     <div className="leaderboard">
       High Scores
+      <div 
+        style={
+          {height: 1, width: 100, backgroundColor: "#EEE", margin: "0 auto", marginBottom: 5}
+        }
+      >
+      </div>
       {
         board.map((score, idx) => 
-          <div key={idx}>{placings[idx]}: {score}</div>
+          <div key={idx} className="leaderboardSlot">
+            <span>{placings[idx]}:</span>
+            <span>{score}</span>
+          </div>
         )
       }
     </div>

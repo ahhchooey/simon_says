@@ -6,7 +6,6 @@
 
   margin: 10px;
   padding: 15px 25px;
-  cursor: pointer;
   outline: none;
   color: #fff;
   border: none;
@@ -16,6 +15,10 @@
   box-sizing: border-box;
 }
 
+.button:focus {
+  outline: 0;
+}
+
 .hov:active {
   background-color: #777;
   box-shadow: 0 5px #666;
@@ -23,6 +26,7 @@
 }
 
 .hov:hover {
+  cursor: pointer;
   opacity: 0.5;
 }
 
@@ -46,3 +50,4 @@
   opacity: 1;
   box-shadow: 0 9px #CCC;
 }
+
