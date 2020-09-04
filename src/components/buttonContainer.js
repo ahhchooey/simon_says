@@ -2,12 +2,9 @@ import React from "react";
 import "./stylesheets/buttonContainer.css";
 import "./stylesheets/button.css";
 
-import Button from "./button.js";
-
 
 function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
 
-  const [playingSequence, setPlayingSequence] = React.useState(false);
   const [playerTurn, setPlayerTurn] = React.useState(false);
   const [playerIndex, setPlayerIndex] = React.useState(0);
 
@@ -25,14 +22,12 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
   },[sequence, gameRunning, playerTurn])
 
   const playSequence = () => {
-    setPlayingSequence(true);
-      display.innerHTML = "simon is moving";
+    display.innerHTML = "simon is moving";
 
     let i = 0;
     let button;
     let interval = setInterval(() => {
       if (i === sequence.length * 2 - 1) {
-        setPlayingSequence(false); 
         setPlayerTurn(true);
         clearInterval(interval);
       }
@@ -44,7 +39,7 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
         button.classList.remove(`flash`);
       }
       i++;
-    }, 650)
+    }, 500)
   }
 
   const clickButton = (e) => {
@@ -56,7 +51,7 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
             setPlayerIndex(0);
             nextLevel();
             setPlayerTurn(false);
-          }, 500)
+          }, 650)
         } else {
           setPlayerIndex(playerIndex + 1);
         }
@@ -64,6 +59,7 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
         setPlayerIndex(0);
         setPlayerTurn(false);
         endGame();
+        display.innerHTML = "incorrect! would you like to play again?";
       }
     }
   }
@@ -80,7 +76,7 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
           />
         )
       }
-      <div></div>
+      <br/>
       {
         colorsBottom.map((color) => 
           <button 

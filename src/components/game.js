@@ -49,21 +49,13 @@ function Game() {
   return (
     <div className="game">
       <div className="hud">
+        <div className="display">&nbsp;</div>
         {
           (gameOver) ?
-            <div>
-              <div className="fail">incorrect! would you like to play again?</div>
-              <div className="restartButton" onClick={restart}>play again</div>
-            </div>
+            <div className="restartButton" onClick={restart}>play again</div>
             : (gameRunning) ? 
-              <div>
-                <div className="display">&nbsp;</div>
-                <div className="score">{score}</div>
-              </div>
-            : <div>
-                <div className="display">&nbsp;</div>
-                <div className="startButton" onClick={start}>start</div>
-              </div>
+              <div className="score">{score}</div>
+            : <div className="startButton" onClick={start}>start</div>
         }
       </div>
       
