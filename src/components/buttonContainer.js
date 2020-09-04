@@ -63,7 +63,7 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
           setPlayerIndex(0);
           setPlayerTurn(false);
           const display = document.querySelector(".display");
-          display.innerHTML = "incorrect! would you like to play again?";
+          display.innerHTML = "incorrect! game over! play again?";
         }, 100)
       }
     }
