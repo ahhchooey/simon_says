@@ -9,9 +9,30 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
   const [playerIndex, setPlayerIndex] = React.useState(0);
 
   const colorsTop = ["green", "red"], colorsBottom = ["yellow", "blue"];
-  const display = document.querySelector(".display");
 
   React.useEffect(() => {
+    const display = document.querySelector(".display");
+    const playSequence = () => {
+      display.innerHTML = "simon is moving";
+
+      let i = 0;
+      let button;
+      let interval = setInterval(() => {
+        if (i === sequence.length * 2 - 1) {
+          setPlayerTurn(true);
+          clearInterval(interval);
+        }
+        let realIdx = Math.floor(i/2);
+        if (i % 2 === 0) {
+          button = document.querySelector(`.${sequence[realIdx]}`);
+          button.classList.add(`flash`);
+        } else {
+          button.classList.remove(`flash`);
+        }
+        i++;
+      }, 500)
+    }
+
     if (gameRunning && !playerTurn) {
       playSequence();
     }
@@ -20,31 +41,11 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
     }
   },[sequence, gameRunning, playerTurn])
 
-  const playSequence = () => {
-    display.innerHTML = "simon is moving";
-
-    let i = 0;
-    let button;
-    let interval = setInterval(() => {
-      if (i === sequence.length * 2 - 1) {
-        setPlayerTurn(true);
-        clearInterval(interval);
-      }
-      let realIdx = Math.floor(i/2);
-      if (i % 2 === 0) {
-        button = document.querySelector(`.${sequence[realIdx]}`);
-        button.classList.add(`flash`);
-      } else {
-        button.classList.remove(`flash`);
-      }
-      i++;
-    }, 500)
-  }
-
   const clickButton = (e) => {
     if (playerTurn) {
       if (sequence[playerIndex] === e.target.getAttribute("data-color")) {
         if (playerIndex === sequence.length - 1) {
+          const display = document.querySelector(".display");
           display.innerHTML = "correct!";
           setTimeout(() => {
             setPlayerIndex(0);
@@ -59,6 +60,7 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
         setTimeout(() => {
           setPlayerIndex(0);
           setPlayerTurn(false);
+          const display = document.querySelector(".display");
           display.innerHTML = "incorrect! would you like to play again?";
         }, 250)
       }

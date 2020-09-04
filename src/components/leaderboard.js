@@ -7,22 +7,23 @@ function Leaderboard({newScore}) {
   const [board, setBoard] = React.useState([]);
   const [size, setSize] = React.useState(0);
 
-  const placings = ["first place", "second place", "third place"];
+  const placings = ["first", "second", "third"];
 
   React.useEffect(() => {
     if (newScore === undefined) return;
-    if (size < 3) {
-      let newBoard = board || [];
+    if (board.length < 3) {
+      let newBoard = board;
       newBoard.push(newScore);
       setBoard(newBoard.sort((a, b) => b - a));
       setSize(size + 1);
     } else {
       let newBoard = [];
       let i = 0;
+      let newIn = false;
       while (newBoard.length < 3) {
-        if (newScore > board[i]) {
+        if (newScore > board[i] && !newIn) {
           newBoard.push(newScore);
-          newScore = -1;
+          newIn = true;
         } else {
           newBoard.push(board[i]);
           i++;
@@ -30,6 +31,7 @@ function Leaderboard({newScore}) {
       }
       setBoard(newBoard);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newScore])
 
   return (
@@ -44,7 +46,7 @@ function Leaderboard({newScore}) {
       {
         board.map((score, idx) => 
           <div key={idx} className="leaderboardSlot">
-            <span>{placings[idx]}:</span>
+            <span>{placings[idx]} place:</span>
             <span>{score}</span>
           </div>
         )
