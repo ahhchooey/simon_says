@@ -13,7 +13,7 @@ function ButtonContainer({gameRunning, sequence, nextLevel, endGame}) {
   React.useEffect(() => {
     const display = document.querySelector(".display");
     const playSequence = () => {
-      display.innerHTML = "simon is moving";
+      display.innerHTML = "watch simon's moves";
 
       let i = 0;
       let button;
